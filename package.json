@@ -21,7 +21,8 @@
     "commit": "git-cz",
     "ci": "npm run build && npm test",
     "db:init": "knex migrate:latest --debug --client pg --connection $(grep DB_URL .env | cut -d '=' -f2) --migrations-directory ./src/config/migrations",
-    "deploy:aws": "chmod +x ./deployHeroku.sh && sudo ./deployHeroku.sh"
+    "deploy:heroku": "chmod +x ./deployHeroku.sh && sudo ./deployHeroku.sh",
+    "deploy:aws": "chmod +x ./deployAWS.sh && sudo ./deployAWS.sh"
   },
   "config": {
     "commitizen": {

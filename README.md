@@ -85,12 +85,10 @@ You can change those for your purposes.
 
 
 ## Deploy 
-### AWS Fargate
-Check all urls to dbs if they are true, they must connect to dbs which located at them own servers like mongodb on Mlab
-When you'll run npm run deploy:heroku you'll need to sign in on heroku. You will be redirected to login form.
-
+### AWS Fargate or Heroku
+TODO
 ```
-npm run deploy:aws
+npm run deploy:{provider}
 ```
 
 
