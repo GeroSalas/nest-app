@@ -50,12 +50,13 @@ export default class UsersRepository {
 
   async update(id: string, data: UpdateUserDTO): Promise<void> {
     const trx = await this.db.transaction();
+    this.logger.debug({ id, data }, 'UpdateUserDTO');
     try {
       const addressId = await this.db('profile')
         .update({ name: data.name }, ['addressId'])
         .where({ userId: id })
         .transacting(trx);
-      if (addressId.length > 0 && addressId[0].id) {
+      if (addressId.length > 0 && addressId[0].addressId) {
         const cityId = await this.db
           .select('id')
           .from('city')
@@ -64,8 +65,8 @@ export default class UsersRepository {
           .transacting(trx);
         if (cityId.length > 0 && cityId[0].id) {
           await this.db('address')
-            .update({ street: data.address, cityId: cityId[0].id })
-            .where({ id: addressId[0].id })
+            .update({ street: data.address.street, cityId: cityId[0].id })
+            .where({ id: addressId[0].addressId })
             .transacting(trx);
         }
       }
