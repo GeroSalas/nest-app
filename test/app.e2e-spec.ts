@@ -24,7 +24,7 @@ describe('AppController (e2e)', () => {
         }),
         KnexModule.forRootAsync({
           useFactory: async (configService: ConfigService) => {
-            return { config: configService.get<any>(`db.test`)};
+            return { config: configService.get<any>(`db.test`) };
           },
           inject: [ConfigService],
         }),
