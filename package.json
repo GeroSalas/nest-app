@@ -19,7 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "commit": "git-cz",
-    "ci": "npm run build && npm test",
+    "ci": "npm run build && npm test && npm run test:e2e",
     "db:init": "knex migrate:latest --debug --client pg --connection $(grep DB_URL .env | cut -d '=' -f2) --migrations-directory ./src/config/migrations",
     "deploy:heroku": "chmod +x ./deployHeroku.sh && sudo ./deployHeroku.sh",
     "deploy:aws": "chmod +x ./deployAWS.sh && sudo ./deployAWS.sh"
@@ -83,6 +83,7 @@
     "husky": "^4.3.0",
     "jest": "26.4.2",
     "prettier": "2.1.2",
+    "sqlite3": "^5.0.0",
     "supertest": "4.0.2",
     "ts-jest": "26.4.1",
     "ts-loader": "6.2.2",

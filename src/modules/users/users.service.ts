@@ -1,6 +1,6 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import UsersRepository from 'src/modules/users/users.repository';
 import UserEntity from 'src/modules/users/interfaces/user';
+import UsersRepository from 'src/modules/users/users.repository';
 import { SignUpDTO } from 'src/modules/auth/dto/req';
 import { UpdateUserDTO } from 'src/modules/users/dto/req';
 import { ProfileUserDTO } from './dto/res';
@@ -9,7 +9,9 @@ import { ProfileUserDTO } from './dto/res';
 export default class UsersService {
   private readonly logger = new Logger(UsersService.name);
 
-  constructor(private readonly usersRepository: UsersRepository) {}
+  constructor(private readonly usersRepository: UsersRepository) {
+    this.logger.debug({ usersRepository }, 'injected UsersRepository');
+  }
 
   async create(data: SignUpDTO): Promise<string> {
     const userId = await this.usersRepository.save(data);

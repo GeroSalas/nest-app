@@ -15,6 +15,11 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
+    it('should verify NODE_ENV="test"', () => {
+      const nodeEnv = process.env.NODE_ENV;
+      expect(nodeEnv).toBe('test');
+    });
+
     it('should return "HELLO LUCKY APP!"', () => {
       expect(appController.sayHello()).toBe('HELLO LUCKY APP!');
     });
